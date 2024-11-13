@@ -3,6 +3,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import "./index.css";
+
 const pizzaData = [
   {
     name: "Focaccia",
@@ -50,7 +52,7 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -59,17 +61,21 @@ function App() {
 }
 
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  return (
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
 }
 
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h2>Our Menu</h2>
       <Pizza />
       <Pizza />
       <Pizza />
-    </div>
+    </main>
   );
 }
 
@@ -77,7 +83,7 @@ function Pizza() {
   return (
     <div>
       <img src="pizzas/spinaci.jpg" alt="Pizza spinaci" />
-      <h2>{pizzaData[2].name}</h2>
+      <h3>{pizzaData[2].name}</h3>
       <p>{pizzaData[2].ingredients}</p>
     </div>
   );
@@ -89,7 +95,9 @@ const Footer = () => {
   const closeHour = 22;
   const isopen = hour >= openHour && hour < closeHour;
 
-  return <footer>{isopen ? "We're currently open!" : ""}</footer>;
+  return (
+    <footer className="footer">{isopen ? "We're currently open!" : ""}</footer>
+  );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

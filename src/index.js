@@ -84,9 +84,12 @@ function Pizza() {
 }
 
 const Footer = () => {
-  return (
-    <footer>{new Date().toLocaleTimeString()} We're currently open!</footer>
-  );
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isopen = hour >= openHour && hour < closeHour;
+
+  return <footer>{isopen ? "We're currently open!" : ""}</footer>;
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

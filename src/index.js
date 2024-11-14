@@ -69,6 +69,9 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
@@ -77,11 +80,13 @@ function Menu() {
         stone oven, all organic, all delicious.
       </p>
 
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
@@ -101,12 +106,19 @@ function Pizza(props) {
 
 const Footer = () => {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 11;
   const closeHour = 22;
   const isopen = hour >= openHour && hour < closeHour;
 
   return (
-    <footer className="footer">{isopen ? "We're currently open!" : ""}</footer>
+    <footer className="footer">
+      {isopen && (
+        <div className="order">
+          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
+    </footer>
   );
 };
 
